@@ -5,6 +5,7 @@ namespace FourelloDevs\CustomHelperFunctions;
 use FourelloDevs\CustomHelperFunctions\Macros\ArrMacros;
 use Illuminate\Support\Arr;
 use Illuminate\Support\ServiceProvider;
+use ReflectionException;
 
 class CustomHelperFunctionsServiceProvider extends ServiceProvider
 {
@@ -12,6 +13,7 @@ class CustomHelperFunctionsServiceProvider extends ServiceProvider
      * Perform post-registration booting of services.
      *
      * @return void
+     * @throws ReflectionException
      */
     public function boot(): void
     {
