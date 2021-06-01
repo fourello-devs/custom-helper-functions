@@ -12,15 +12,18 @@ use Illuminate\Support\Arr;
 if (! function_exists('array_filter_recursive')) {
     /**
      * @param array $arr
+     * @param bool $accept_boolean
+     * @param bool $accept_null
+     * @param bool $accept_0
      * @return array
      */
-    function array_filter_recursive(array $arr): array
+    function array_filter_recursive(array $arr, bool $accept_boolean = FALSE, bool $accept_null = FALSE, bool $accept_0 = FALSE): array
     {
         $result = [];
         foreach ($arr as $key => $value) {
-            if(empty($value) === FALSE){
+            if(($accept_boolean && is_bool($value)) || ($accept_0 && is_numeric($value) && $value === 0) || empty($value) === FALSE || ($accept_null && is_null($value))) {
                 if (is_array($value)) {
-                    $result[$key] = array_filter_recursive($value);
+                    $result[$key] = array_filter_recursive($value, $accept_boolean, $accept_null, $accept_0);
                 }
                 else {
                     $result[$key] = $value;
