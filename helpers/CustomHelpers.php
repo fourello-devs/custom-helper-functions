@@ -21,7 +21,7 @@ if (! function_exists('array_filter_recursive')) {
     {
         $result = [];
         foreach ($arr as $key => $value) {
-            if(($accept_boolean && is_bool($value)) || ($accept_0 && is_numeric($value) && $value === 0) || empty($value) === FALSE || ($accept_null && is_null($value))) {
+            if(($accept_boolean && is_bool($value)) || ($accept_0 && is_numeric($value) && (int) $value === 0) || empty($value) === FALSE || ($accept_null && is_null($value))) {
                 if (is_array($value)) {
                     $result[$key] = array_filter_recursive($value, $accept_boolean, $accept_null, $accept_0);
                 }
